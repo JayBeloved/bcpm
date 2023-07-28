@@ -53,7 +53,7 @@ def index(request):
                         smoothness_se, compactness_se, symmetry_se, fractal_dimension_se]]
             
             # Get the absolute file path to the knn.joblib file
-            file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\knn.joblib")
+            file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/knn.joblib")
             model = joblib.load(file_path)
 
             # Run Prediction
