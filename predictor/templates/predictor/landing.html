@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Welcome to B.C.P.M{% endblock title %}
+
+{% block banner_content %}
+<h1 class="fw-bolder">Breast Cancer Detection Model</h1>
+<p class="lead">Detecting Breast Cancer with Machine Learning.</p>
+<a class="btn btn-lg btn-light" href="#about">About</a>
+{% endblock banner_content %}
+
+{% block about %}
+<h2>About the model</h2>
+<p class="lead">Using advanced machine learning techniques, the app can accurately detect breast cancer 
+    diagnosis. Simply input the relevant features, and let our model do the rest. The model used is a KNN model, 
+    a classification  model that have been trained to detect whether a cancer is Benign or Maligant. Important features used by the model are:</p>
+<ul>
+    {% for feature in features %}
+        <strong><li>{{ feature }}</li></strong>
+    {% endfor %}
+</ul>
+{% endblock about %}
+
+{% block info %}
+<h2>Using the Model</h2>
+<p class="lead">Input the neccessary values for each feature and click the detect button, 
+    The values are default to float data type. Inputting strings will not work. 
+    Ensure to fill in all the fields for better result.</p>
+{% endblock info %}
+
+{% block main %}
+    {% include 'predictor/predict_form.html' %}
+{% endblock main %}

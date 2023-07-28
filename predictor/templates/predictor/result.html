@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Prediction Results{% endblock title %}
+
+{% block banner_content %}
+<h1 class="fw-bolder">Breast Cancer Prediction Model</h1>
+<p class="lead">Predicting Breast Cancer with Machine Learning.</p>
+<a class="btn btn-lg btn-light" href="#about">About</a>
+{% endblock banner_content %}
+
+{% block about %}
+<div class="col-xl-12 col-lg-12">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Features</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-outline table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Insert the HTML table generated from the DataFrame here -->
+                        {{ table | safe }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock about %}
+
+{% block info %}
+<h2>Results</h2>
+<p class="lead">
+    {% if prediction == 'M' %}
+        Based on the values inputted, the patient cancer is classified as a <strong>Malignant Cancer</strong>.
+    {% else %}
+        Based on the values inputted, the patient cancer is classified as a <strong>Benign Cancer</strong>.
+    {% endif %}
+</p>
+{% endblock info %}
+

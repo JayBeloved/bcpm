@@ -1,0 +1,23 @@
+<div class="col-xl-12 col-lg-12">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Features</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-outline table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Insert the HTML table generated from the DataFrame here -->
+                        {{ html_table | safe }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

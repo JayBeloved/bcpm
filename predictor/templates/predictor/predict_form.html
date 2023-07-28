@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+            {% if messages %}
+                {% for message in messages %}
+                    <h5 class="text-center {{ messages.tags }} animate__animated
+                    animate__fadeIn animate__delay-3s">{{ message }}</h5>
+                {% endfor %}
+            {% endif %}
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Input Features </h6>
+            </div>
+            <div class="card-body">
+                <div class="p-5">
+                    <form action="{% url 'model:index' %}" class="user" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Radius Mean</label>
+                                    {{ form.radius_mean }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Texture Mean</label>
+                                    {{ form.texture_mean}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Smoothness Mean</label>
+                                    {{ form.smoothness_mean}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Compactness Mean</label>
+                                    {{ form.compactness_mean }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Symmetry Mean</label>
+                                    {{ form.symmetry_mean }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Fractal Dimension Mean</label>
+                                    {{ form.fractal_dimension_mean }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Radius SE</label>
+                                    {{ form.radius_se }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Texture SE</label>
+                                    {{ form.texture_se}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Smoothness SE</label>
+                                    {{ form.smoothness_se}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Compactness SE</label>
+                                    {{ form.compactness_se }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Symmetry SE</label>
+                                    {{ form.symmetry_se }}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">Fractal Dimension SE</label>
+                                    {{ form.fractal_dimension_se }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <center>
+                        <button class="btn btn-primary btn-user btn-rounded mt-3" type="submit">Run Prediction</button>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
