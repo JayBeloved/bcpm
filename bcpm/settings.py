@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import django_heroku
 import sentry_sdk
 import bcpm
+import dj_database_url
 from pathlib import Path
 from sentry_sdk.integrations.django import DjangoIntegration
 from decouple import Csv, config
@@ -82,6 +83,14 @@ WSGI_APPLICATION = 'bcpm.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL", default="sqlite:///db.sqlite3"),
+        conn_max_age=600,
+    )
+}
+
 
 DATABASES = {
     'default': {
