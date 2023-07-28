@@ -10,7 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+
+import django_heroku
+import sentry_sdk
+import bcpm
 from pathlib import Path
+from sentry_sdk.integrations.django import DjangoIntegration
+from decouple import Csv, config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q0bvgqh-bn6csf0i8n#5h)$k69dk^682#!z0!=hsrwzi1jnl6p'
+
+SECRET_KEY = config("SECRET_KEY", default='django-insecure-q0bvgqh-bn6csf0i8n#5h)$k69dk^682#!z0!=hsrwzi1jnl6p')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost", cast=Csv())
 
 
 # Application definition
@@ -119,9 +127,53 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR.parent.parent / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+)
+
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==============================================================================
+# FIRST-PARTY SETTINGS
+# ==============================================================================
+
+TMS_ENVIRONMENT = config("TMS_ENVIRONMENT", default="local")
+
+# ==============================================================================
+# SECURITY SETTINGS
+# ==============================================================================
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+
+SECURE_HSTS_SECONDS = 60 * 60 * 24 * 7 * 52  # one year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SESSION_COOKIE_SECURE = True
+
+
+# ==============================================================================
+# THIRD-PARTY APPS SETTINGS
+# ==============================================================================
+
+sentry_sdk.init(
+    dsn=config("SENTRY_DSN", default=""),
+    environment=TMS_ENVIRONMENT,
+    release="tms@%s" % bcpm.__version__,
+    integrations=[DjangoIntegration()],
+)
+
+django_heroku.settings(locals())
