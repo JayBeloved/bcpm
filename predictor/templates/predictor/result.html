@@ -4,7 +4,7 @@
 {% block title %}Detection Results{% endblock title %}
 
 {% block banner_content %}
-<h1 class="fw-bolder">Breast Cancer Detection Model</h1>
+<h1 class="fw-bolder">Breast Cancer Detection System</h1>
 <p class="lead">Detecting Breast Cancer with Machine Learning.</p>
 <a class="btn btn-lg btn-light" href="#about">About</a>
 {% endblock banner_content %}
@@ -39,9 +39,9 @@
 <h2>Results</h2>
 <p class="lead">
     {% if prediction == 'M' %}
-        Based on the values inputted, the patient cancer is classified as a <strong>Malignant Cancer</strong>.
+        The patient sample data is <strong>Malignant</strong>.
     {% else %}
-        Based on the values inputted, the patient cancer is classified as a <strong>Benign Cancer</strong>.
+        The patient sample data is <strong>Benign</strong>.
     {% endif %}
 </p>
 {% endblock info %}
