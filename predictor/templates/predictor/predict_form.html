@@ -15,21 +15,28 @@
                     <form action="{% url 'model:index' %}" class="user" method="POST">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label text-primary">ID</label>
+                                    {{ form.id }}
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <span class="form-bar"></span>
                                     <label class="float-label text-primary">Radius Mean</label>
                                     {{ form.radius_mean }}
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <span class="form-bar"></span>
                                     <label class="float-label text-primary">Texture Mean</label>
                                     {{ form.texture_mean}}
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <span class="form-bar"></span>
                                     <label class="float-label text-primary">Smoothness Mean</label>

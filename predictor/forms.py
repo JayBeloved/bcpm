@@ -2,6 +2,15 @@ from django import forms
 
 # Create input form
 class predictor_form(forms.Form):
+    id = forms.FloatField(
+    widget=forms.NumberInput(
+        attrs={
+            'class': 'form-control form-control-user',
+            'placeholder': " ID ",
+            'style': "border-radius: 10rem;padding: 0.5rem 0.5rem;",
+        }
+    ))
+
     radius_mean = forms.FloatField(
     widget=forms.NumberInput(
         attrs={

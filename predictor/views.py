@@ -33,7 +33,7 @@ def index(request):
     if request.method == 'POST':
         # Get user input
         if form.is_valid():
-            id = 1
+            id = form.cleaned_data.get("id")
             radius_mean = form.cleaned_data.get("radius_mean")
             texture_mean = form.cleaned_data.get("texture_mean")
             smoothness_mean = form.cleaned_data.get("smoothness_mean")
